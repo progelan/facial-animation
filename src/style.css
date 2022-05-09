@@ -1,0 +1,12 @@
+html, body {
+    height: 100vh;
+    font-family: 'Poppins';
+    background: green;
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
