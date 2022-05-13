@@ -28,10 +28,22 @@ const scene = new THREE.Scene()
 // const sphere = new THREE.Mesh(geometry,material)
 // scene.add(sphere)
 
-let tl = gsap.timeline()
+// let tl = gsap.timeline()
+
+let options={ extrude_x: 0 };
 
 
 gltfloader.load('untitled.gltf', (gltf) => {
+
+    let object = gltf.scene.children[2];
+
+    let morphChange = () => {
+       object.morphTargetInfluences[0] = options.extrude_x;
+    };
+    gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
+
+
+    console.log(gltf)
     gltf.scene.scale.set(0.3, 0.3, 0.3)
     gltf.scene.rotation.set(0, 3, 0)
 
@@ -41,8 +53,8 @@ gltfloader.load('untitled.gltf', (gltf) => {
     gui.add(gltf.scene.rotation, 'y').min(0).max(9)
     gui.add(gltf.scene.rotation, 'z').min(0).max(9)
 
-    tl.to(gltf.scene.rotation, {y: 0.7, duration: 1})
-    tl.to(gltf.scene.rotation, {y: -0.7, duration: 1})
+    // tl.to(gltf.scene.rotation, {y: 0.7, duration: 1})
+    // tl.to(gltf.scene.rotation, {y: -0.7, duration: 1})
 })
 
 

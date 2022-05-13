@@ -16,6 +16,10 @@
     ],
     "nodes" : [
         {
+            "mesh" : 0,
+            "name" : "Cube"
+        },
+        {
             "name" : "Light",
             "rotation" : [
                 0.16907575726509094,
@@ -42,26 +46,32 @@
                 4.958309173583984,
                 6.925790786743164
             ]
-        },
+        }
+    ],
+    "materials" : [
         {
-            "mesh" : 0,
-            "name" : "Plane",
-            "rotation" : [
-                0,
-                0,
-                -0.7071068286895752,
-                0.7071068286895752
-            ],
-            "scale" : [
-                2,
-                1,
-                1
-            ]
+            "doubleSided" : true,
+            "name" : "Material",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8000000715255737,
+                    0.03389674052596092,
+                    0.1256725937128067,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.4000000059604645
+            }
         }
     ],
     "meshes" : [
         {
-            "name" : "Plane",
+            "extras" : {
+                "targetNames" : [
+                    "extrude_x"
+                ]
+            },
+            "name" : "Cube",
             "primitives" : [
                 {
                     "attributes" : {
@@ -69,8 +79,18 @@
                         "NORMAL" : 1,
                         "TEXCOORD_0" : 2
                     },
-                    "indices" : 3
+                    "indices" : 3,
+                    "material" : 0,
+                    "targets" : [
+                        {
+                            "POSITION" : 4,
+                            "NORMAL" : 5
+                        }
+                    ]
                 }
+            ],
+            "weights" : [
+                0
             ]
         }
     ],
@@ -78,15 +98,15 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 120,
+            "count" : 40,
             "max" : [
                 1,
-                0.5674577951431274,
+                1,
                 1
             ],
             "min" : [
                 -1,
-                0,
+                -1,
                 -1
             ],
             "type" : "VEC3"
@@ -94,47 +114,79 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 120,
+            "count" : 40,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 120,
+            "count" : 40,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 228,
+            "count" : 60,
             "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 40,
+            "max" : [
+                5.719391822814941,
+                0,
+                0
+            ],
+            "min" : [
+                0,
+                0,
+                0
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 40,
+            "type" : "VEC3"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 1440,
+            "byteLength" : 480,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 1440,
-            "byteOffset" : 1440
+            "byteLength" : 480,
+            "byteOffset" : 480
         },
         {
             "buffer" : 0,
-            "byteLength" : 960,
-            "byteOffset" : 2880
+            "byteLength" : 320,
+            "byteOffset" : 960
         },
         {
             "buffer" : 0,
-            "byteLength" : 456,
-            "byteOffset" : 3840
+            "byteLength" : 120,
+            "byteOffset" : 1280
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 480,
+            "byteOffset" : 1400
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 480,
+            "byteOffset" : 1880
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 4296,
+            "byteLength" : 2360,
             "uri" : "untitled.bin"
         }
     ]
