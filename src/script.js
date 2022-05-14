@@ -4,7 +4,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import gsap from 'gsap'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
 const gltfloader = new GLTFLoader()
 
@@ -25,54 +26,75 @@ const scene = new THREE.Scene()
 // material.color = new THREE.Color(0xff0000)
 
 // Mesh
-// const sphere = new THREE.Mesh(geometry,material)
+// const sphere = new THREE.Mesh(geometry, material)
 // scene.add(sphere)
 
 // let tl = gsap.timeline()
 
 let options={ extrude_x: 0 };
 
+/**
+ * Sizes
+ */
+ const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
 
-gltfloader.load('untitled.gltf', (gltf) => {
-
-    let object = gltf.scene.children[2];
-
-    let morphChange = () => {
-       object.morphTargetInfluences[0] = options.extrude_x;
-    };
-    gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
-
-
-    console.log(gltf)
-    gltf.scene.scale.set(0.3, 0.3, 0.3)
-    gltf.scene.rotation.set(0, 3, 0)
-
-    scene.add(gltf.scene)
-
-    gui.add(gltf.scene.rotation, 'x').min(0).max(9)
-    gui.add(gltf.scene.rotation, 'y').min(0).max(9)
-    gui.add(gltf.scene.rotation, 'z').min(0).max(9)
-
-    // tl.to(gltf.scene.rotation, {y: 0.7, duration: 1})
-    // tl.to(gltf.scene.rotation, {y: -0.7, duration: 1})
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
 })
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+
+/**
+ * Loaders
+ */
+const ktx2Loader = new KTX2Loader()
+    .setTranscoderPath( '/' ) // ../node_modules/three/examples/js/libs/basis/ with copy-webpack-plugin
+    .detectSupport( renderer )
+
+
+gltfloader
+    .setKTX2Loader( ktx2Loader )
+    .setMeshoptDecoder( MeshoptDecoder )
+    .load('cube.gltf', (gltf) => {
+        let object = gltf.scene.children[2];
+
+        let morphChange = () => {
+        object.morphTargetInfluences[0] = options.extrude_x;
+        };
+        gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
+
+
+        console.log(gltf)
+        gltf.scene.scale.set(0.3, 0.3, 0.3)
+        // gltf.scene.rotation.set(0, 3, 0)
+
+        scene.add(gltf.scene)
+
+        gui.add(gltf.scene.rotation, 'x').min(0).max(9)
+        gui.add(gltf.scene.rotation, 'y').min(0).max(9)
+        gui.add(gltf.scene.rotation, 'z').min(0).max(9)
+
+        // tl.to(gltf.scene.rotation, {y: 0.7, duration: 1})
+        // tl.to(gltf.scene.rotation, {y: -0.7, duration: 1})
+    })
 
 
 // Lights
-
 const pointLight = new THREE.AmbientLight(0xffffff, 1)
 pointLight.position.x = 0
 pointLight.position.y = 0
 pointLight.position.z = 1
 scene.add(pointLight)
 
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
 
 window.addEventListener('resize', () =>
 {
@@ -104,19 +126,8 @@ scene.add(camera)
 // controls.enableDamping = true
 
 /**
- * Renderer
- */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
-/**
  * Animate
  */
-
 const clock = new THREE.Clock()
 
 const tick = () =>
