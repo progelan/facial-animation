@@ -31,7 +31,7 @@ const scene = new THREE.Scene()
 
 // let tl = gsap.timeline()
 
-let options={ extrude_x: 0 };
+// let options={ extrude_x: 0 };
 
 /**
  * Sizes
@@ -64,17 +64,17 @@ const ktx2Loader = new KTX2Loader()
 gltfloader
     .setKTX2Loader( ktx2Loader )
     .setMeshoptDecoder( MeshoptDecoder )
-    .load('cube.gltf', (gltf) => {
-        let object = gltf.scene.children[2];
+    .load('stup_face.gltf', (gltf) => {
+        // let object = gltf.scene.children[2];
 
-        let morphChange = () => {
-        object.morphTargetInfluences[0] = options.extrude_x;
-        };
-        gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
+        // let morphChange = () => {
+        // object.morphTargetInfluences[0] = options.extrude_x;
+        // };
+        // gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
 
 
         console.log(gltf)
-        gltf.scene.scale.set(0.3, 0.3, 0.3)
+        gltf.scene.scale.set(0.5, 0.5, 0.5)
         // gltf.scene.rotation.set(0, 3, 0)
 
         scene.add(gltf.scene)
