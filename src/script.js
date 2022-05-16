@@ -29,9 +29,12 @@ const scene = new THREE.Scene()
 // const sphere = new THREE.Mesh(geometry, material)
 // scene.add(sphere)
 
-// let tl = gsap.timeline()
+let tl = gsap.timeline()
 
-// let options={ extrude_x: 0 };
+let options={ extrude_x: 0 };
+
+// let influences;
+
 
 /**
  * Sizes
@@ -64,17 +67,17 @@ const ktx2Loader = new KTX2Loader()
 gltfloader
     .setKTX2Loader( ktx2Loader )
     .setMeshoptDecoder( MeshoptDecoder )
-    .load('stup_face.gltf', (gltf) => {
-        // let object = gltf.scene.children[2];
+    .load('cube.gltf', (gltf) => {
+        debugger;
+        let mesh = gltf.scene.children[0];
 
-        // let morphChange = () => {
-        // object.morphTargetInfluences[0] = options.extrude_x;
-        // };
-        // gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
-
+        let morphChange = () => {
+            mesh.morphTargetInfluences[0] = options.extrude_x;
+        };
+        gui.add(options, 'extrude_x', 0, 1).onChange(morphChange);
 
         console.log(gltf)
-        gltf.scene.scale.set(0.5, 0.5, 0.5)
+        gltf.scene.scale.set(0.6, 0.6, 0.6)
         // gltf.scene.rotation.set(0, 3, 0)
 
         scene.add(gltf.scene)
@@ -83,8 +86,17 @@ gltfloader
         gui.add(gltf.scene.rotation, 'y').min(0).max(9)
         gui.add(gltf.scene.rotation, 'z').min(0).max(9)
 
-        // tl.to(gltf.scene.rotation, {y: 0.7, duration: 1})
-        // tl.to(gltf.scene.rotation, {y: -0.7, duration: 1})
+        // const mesh = gltf.scene.children[0]
+        // influences = mesh.morphTargetInfluences;
+        // for ( const [ key, value ] of Object.entries( mesh.morphTargetDictionary ) ) {
+        //     gui.add( influences, value, 0, 1, 0.01 )
+        //         .name( key.replace( 'blendShape1.', '' ) )
+        //         .listen( influences );
+        // }
+
+        tl.to(gltf.scene.rotation, {y: 0.3, duration: 0.7})
+        tl.to(gltf.scene.rotation, {y: -0.5, duration: 1})
+        tl.to(gltf.scene.rotation, {y: 0.3, duration: 0.3})
     })
 
 
@@ -114,7 +126,6 @@ window.addEventListener('resize', () =>
 /**
  * Camera
  */
-// Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 0
 camera.position.y = 0
@@ -137,6 +148,23 @@ const tick = () =>
 
     // Update objects
     // sphere.rotation.y = .5 * elapsedTime
+
+
+    // if (influences) {
+    //     if (elapsedTime < 4) {
+    //         influences[21] = elapsedTime / 2
+    //         influences[14] = elapsedTime / 2
+    //         influences[15] = elapsedTime / 2
+    //     } else {
+    //         influences[21] = 0.4
+    //         influences[14] = 0.2
+    //         influences[15] = 0.5
+    //         influences[18] = 1
+    //         influences[0] = Math.random(10)
+    //     }
+    // }
+
+
 
     // Update Orbital Controls
     // controls.update()
