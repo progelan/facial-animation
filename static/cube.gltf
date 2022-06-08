@@ -38,7 +38,8 @@
         {
             "extras" : {
                 "targetNames" : [
-                    "extrude_x"
+                    "extrude_x",
+                    "extrude_y"
                 ]
             },
             "name" : "Cube",
@@ -55,11 +56,16 @@
                         {
                             "POSITION" : 4,
                             "NORMAL" : 5
+                        },
+                        {
+                            "POSITION" : 6,
+                            "NORMAL" : 7
                         }
                     ]
                 }
             ],
             "weights" : [
+                0,
                 0
             ]
         }
@@ -68,7 +74,7 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 30,
+            "count" : 50,
             "max" : [
                 1,
                 1,
@@ -84,25 +90,25 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 30,
+            "count" : 50,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 30,
+            "count" : 50,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 60,
+            "count" : 84,
             "type" : "SCALAR"
         },
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 30,
+            "count" : 50,
             "max" : [
                 5.719391822814941,
                 0,
@@ -118,45 +124,77 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 30,
+            "count" : 50,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 50,
+            "max" : [
+                0,
+                0,
+                4.967146873474121
+            ],
+            "min" : [
+                0,
+                0,
+                0
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 50,
             "type" : "VEC3"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 360,
+            "byteLength" : 600,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 360,
-            "byteOffset" : 360
+            "byteLength" : 600,
+            "byteOffset" : 600
         },
         {
             "buffer" : 0,
-            "byteLength" : 240,
-            "byteOffset" : 720
+            "byteLength" : 400,
+            "byteOffset" : 1200
         },
         {
             "buffer" : 0,
-            "byteLength" : 120,
-            "byteOffset" : 960
+            "byteLength" : 168,
+            "byteOffset" : 1600
         },
         {
             "buffer" : 0,
-            "byteLength" : 360,
-            "byteOffset" : 1080
+            "byteLength" : 600,
+            "byteOffset" : 1768
         },
         {
             "buffer" : 0,
-            "byteLength" : 360,
-            "byteOffset" : 1440
+            "byteLength" : 600,
+            "byteOffset" : 2368
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 600,
+            "byteOffset" : 2968
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 600,
+            "byteOffset" : 3568
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 1800,
+            "byteLength" : 4168,
             "uri" : "cube.bin"
         }
     ]
