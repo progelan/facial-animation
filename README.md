@@ -11,4 +11,7 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
-<video src='output.mp4' width=180></video>
+
+
+https://user-images.githubusercontent.com/48409924/199788621-2d137bc0-96ca-4b08-9419-a7aa0a706a11.mp4
+
