@@ -12,6 +12,4 @@ npm run dev
 npm run build
 ```
 
-
-https://user-images.githubusercontent.com/48409924/199788621-2d137bc0-96ca-4b08-9419-a7aa0a706a11.mp4
-
+![overview](https://user-images.githubusercontent.com/48409924/199792810-36f4deca-0227-44a0-8f93-0de92a51ef46.gif)
